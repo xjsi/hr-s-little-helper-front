@@ -55,7 +55,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./lib/**/*.jsx'], ['build', 'reload-js']);
+  gulp.watch(['./src/**/*.jsx'], ['build', 'reload-js']);
   gulp.watch([paths.less], ['less', 'reload-js']);
 });
 

@@ -1,4 +1,5 @@
 var Field = require('./field');
+var React = require('react');
 var InterviewerForm = React.createClass({
   handle_submit: function(){
     $.ajax({
@@ -22,7 +23,7 @@ var InterviewerForm = React.createClass({
       <div>
         <span className='title'>Create New Interviewer</span>
 
-        <div class='interviewer-form'>
+        <div className='interviewer-form'>
           <Field lname='Name' id='name' ref='name'></Field>
           <Field lname='Email' id='email' ref='email'></Field>
           <Field lname='Tel.' id='tel' ref='tel'></Field>
