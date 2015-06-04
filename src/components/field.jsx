@@ -1,7 +1,7 @@
+var React = require('react');
 var Field = React.createClass({
-  value:'',
-  handleInputChange: function(){
-    this.value = this.refs.value.getDOMNode().value
+  handleInputChange: function(e){
+    this.value = e.target.value
   },
   render: function(){
     return (
