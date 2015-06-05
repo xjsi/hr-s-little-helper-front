@@ -6,7 +6,7 @@ var rest = require('rest'),
 
 var api_remote = process.env.HRLH_SERVICE || 'http://localhost:3000/api/v1/'
 var client =
-      rest.wrap(mime)
+      rest.wrap(mime, {mime:'application/json'})
       .wrap(errorCode, { code: 500 })
       .wrap(pathPrefix, { prefix: api_remote })
 if(localStorage.access_token)
