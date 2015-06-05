@@ -1,4 +1,4 @@
-# GET /interviewer
+# GET /api/v1/interviewer
 + Response 200 (application/json)
     + Body
           {
@@ -6,7 +6,7 @@
               "name":"jichao ouyang"
           }
 
-# POST /interviewer
+# POST /api/v1/interviewer
 + Request (application/json)
 
             {

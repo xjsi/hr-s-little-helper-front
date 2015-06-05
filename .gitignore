@@ -34,3 +34,12 @@ build/Release
 node_modules
 
 .tern-port
+stylesheets
+# Created by https://www.gitignore.io
+
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
+

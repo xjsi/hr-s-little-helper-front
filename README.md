@@ -6,7 +6,8 @@
 ```
 npm install gulp -g
 npm install
-gulp
+npm run mock
+npm start
 ```
 
 ## test

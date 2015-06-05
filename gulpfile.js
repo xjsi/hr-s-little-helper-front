@@ -7,10 +7,10 @@ var del = require('del');
 var connect = require('gulp-connect');
 var port = process.env.PORT || 8080;
 var reloadPort = process.env.RELOAD_PORT || 35729;
-
+var sass = require('gulp-sass')
 var paths = {
   source: './src/app.jsx',
-  less: ['less/*.less'],
+  sass: ['scss/*.scss'],
 	javascripts: 'javascripts',
   stylesheets: 'stylesheets',
 	tests: ['__tests__/**/*.jsx']
@@ -34,7 +34,7 @@ gulp.task('build', function() {
         .pipe(gulp.dest(paths.javascripts));
 });
 
-gulp.task('serve', ['build'], function () {
+gulp.task('serve', ['build', 'sass'], function () {
   return connect.server({
     port: port,
     livereload: {
@@ -43,20 +43,22 @@ gulp.task('serve', ['build'], function () {
   });
 });
 
-gulp.task('reload-js', ['build'], function () {
+gulp.task('reload-js', ['build','sass'], function () {
   return gulp.src(paths.source)
     .pipe(connect.reload());
 });
 
-gulp.task('less', function() {
-  return gulp.src(paths.less)
-    .pipe(less())
-    .pipe(gulp.dest(paths.stylesheets));
+gulp.task('sass', function() {
+  return gulp.src(paths.sass)
+  .pipe(sass({
+    includePaths: ['bower_components/foundation/scss']
+  }))
+  .pipe(gulp.dest('./stylesheets'));
 });
 
 gulp.task('watch', function () {
   gulp.watch(['./src/**/*.jsx'], ['reload-js']);
-  gulp.watch([paths.less], ['reload-js']);
+  gulp.watch([paths.sass], ['reload-js']);
 });
 
 gulp.task('default', ['serve', 'watch']);
