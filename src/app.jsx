@@ -1,3 +1,17 @@
 var React= require('react');
 var InterviewerForm = require('./components/interviewer');
-React.render(<InterviewerForm url='http://localhost:9999/api/v1/interviewer'></InterviewerForm>,document.getElementById('interviewer-form'));
+var {Router} = require('director');
+
+var routes = {
+  '/interviewer': {
+    '/new': function(){
+      React.render(
+        <InterviewerForm></InterviewerForm>,
+        document.getElementById('interviewer-form'));
+    }
+  }
+};
+
+var router = Router(routes);
+
+router.init();

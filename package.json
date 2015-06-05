@@ -38,6 +38,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "director": "^1.2.8",
     "mori": "^0.3.2",
     "react": "^0.13.3"
   },
