@@ -21,7 +21,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', function() {
-  var bundle = browserify({
+  return  browserify({
     entries: paths.source,
     debug: true,
     extensions: ['.jsx','.js']
@@ -30,12 +30,12 @@ gulp.task('build', function() {
         .transform(['envify'])
         .bundle()
         .pipe(source('app.js'))
-        .pipe(buffer());
-  return bundle.pipe(gulp.dest(paths.javascripts));
+        .pipe(buffer())
+        .pipe(gulp.dest(paths.javascripts));
 });
 
 gulp.task('serve', ['build'], function () {
-  connect.server({
+  return connect.server({
     port: port,
     livereload: {
       port: reloadPort
@@ -43,7 +43,7 @@ gulp.task('serve', ['build'], function () {
   });
 });
 
-gulp.task('reload-js', function () {
+gulp.task('reload-js', ['build'], function () {
   return gulp.src(paths.source)
     .pipe(connect.reload());
 });
@@ -55,8 +55,8 @@ gulp.task('less', function() {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(['./src/**/*.jsx'], ['build', 'reload-js']);
-  gulp.watch([paths.less], ['less', 'reload-js']);
+  gulp.watch(['./src/**/*.jsx'], ['reload-js']);
+  gulp.watch([paths.less], ['reload-js']);
 });
 
-gulp.task('default', ['build', 'serve', 'watch']);
+gulp.task('default', ['serve', 'watch']);
