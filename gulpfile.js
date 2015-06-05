@@ -26,12 +26,15 @@ gulp.task('build', function() {
     debug: true,
     extensions: ['.jsx','.js']
   })
-        .transform(babelify)
-        .transform(['envify'])
-        .bundle()
-        .pipe(source('app.js'))
-        .pipe(buffer())
-        .pipe(gulp.dest(paths.javascripts));
+    .transform(babelify.configure({
+
+      optional: ["runtime","es7.asyncFunctions"]
+    }))
+    .transform(['envify'])
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest(paths.javascripts));
 });
 
 gulp.task('serve', ['build', 'sass'], function () {
