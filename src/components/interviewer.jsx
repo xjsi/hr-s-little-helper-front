@@ -20,15 +20,13 @@ var InterviewerForm = React.createClass({
 
   render: function(){
     return (
-      <div>
-        <span className='title'>Create New Interviewer</span>
-
-        <div className='interviewer-form'>
+      <div className='row'>
+        <div className="small-11 small-centered large-6 large-centered columns">
+          <h2>Create New Interviewer</h2>
           <Field lname='Name' id='name' ref='name'></Field>
           <Field lname='Email' id='email' ref='email'></Field>
           <Field lname='Tel.' id='tel' ref='tel'></Field>
-          <hr/>
-          <input type='button' value='Sumit' id='submit'  onClick={this.handle_submit}/>
+          <input type='submit' id='submit' className="button" value="Create" onClick={this.handle_submit}/>
         </div>
       </div>
     );
