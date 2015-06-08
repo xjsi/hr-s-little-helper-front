@@ -38,16 +38,16 @@ var Interviewer = React.createClass({
 
   render: function(){
     var message, interviewerForm;
-    if (this.state.status===201){
+    if (this.state.status >=200 && this.state.status < 300 ){
       message = (
         <div data-alert className="alert-box status radius">
-          interviewer created!
+          interviewer saved!
         </div>
       )
     }else if(this.state.status>0){
       message = (
         <div data-alert className="alert-box alert radius">
-          Error when creating, try again
+          Error when saving, try again
         </div>
       )
     }

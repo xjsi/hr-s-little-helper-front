@@ -7,7 +7,6 @@ store.newInterviewer = function(entity) {
 };
 
 store.updateInterviewer = function(entity) {
-  debugger
   return client({method:'PUT', path: 'interviewer/'+entity.key, entity: entity});
 };
 

@@ -11,7 +11,7 @@ var Interviewer = React.createClass({
     if (confirm("do you want to delete")){
       var resp = await store.deleteInterviewer({email: this.interviewer_key()});
       if (resp.entity == true){
-        alert('Delete Successfule');
+        console.log('Delete Successfule');
       }
       this.props.deleteCallback();
     }
