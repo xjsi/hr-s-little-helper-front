@@ -1,17 +1,33 @@
 var React = require('react');
+var store = require('../store');
+
 var InterviewerItem = require('./interviewers-item');
 
 var InterviewersListBody = React.createClass({
-	render: function(){
-		var interviewerItems = this.props.interviewers.map(function(interviewer){
-			return <InterviewerItem interviewer={interviewer}></InterviewerItem>;
-		});
-		return (
-			<tbody className='list-body'>
-			{interviewerItems}
-			</tbody>
-			);
-	}
+
+  _getAllInterviews: async function(){
+    var resp = await store.allInterviewers();
+    this.setState({interviewers: resp.entity});
+  },
+
+  getInitialState: function(){
+    return {interviewers: []};
+  },
+
+  render: function(){
+  	var interviewerItems = this.state.interviewers.map((interviewer)=>{
+  		return <InterviewerItem interviewer={interviewer} deleteCallback={this._getAllInterviews}></InterviewerItem>;
+  	});
+  	return (
+  		<tbody className='list-body'>
+  		{interviewerItems}
+  		</tbody>
+  	);
+  },
+  componentDidMount: function(){
+    this._getAllInterviews();
+  }
+
 });
 
 module.exports = InterviewersListBody;

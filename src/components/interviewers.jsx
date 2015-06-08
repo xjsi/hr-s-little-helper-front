@@ -1,33 +1,17 @@
 var React = require('react');
+
 var InterviewersListBody = require('./interviewers-body');
 
 var InterviewersList = React.createClass({
-	getInitialState: function(){
-		return {interviewers: []};
-	},
-	componentDidMount: function(){
-		$.ajax({
-    		url: this.props.url,
-    		dataType: 'json',
-    		cache: false,
-    		success: function(data) {
-    		  this.setState({interviewers: data});
-    		}.bind(this),
-    		error: function(xhr, status, err) {
-    		  console.error(this.props.url, status, err.toString());
-    		}.bind(this)
-    	});
-	},
-  
 	render: function(){
 	 return (
-	 	<table>
+	 	<table summary="All interviewers">
 	 		<thead>
-			<td>Name</td>
-			<td>Email</td>
-			<td>Opertions</td>
-		</thead>
-	  	<InterviewersListBody interviewers={this.state.interviewers}></InterviewersListBody>
+			    <td width="200">Name</td>
+			    <td width="500">Email</td>
+			    <td width="300">Opertions</td>
+		    </thead>
+	  	    <InterviewersListBody/>
 	  </table>
 	 );
 	}

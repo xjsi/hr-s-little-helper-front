@@ -1,24 +1,43 @@
 var Field = require('./field');
 var React = require('react');
+var InterviewerForm = require('./interviewer-form')
 var store = require('../store');
-var InterviewerForm = React.createClass({
+
+var Interviewer = React.createClass({
   getInitialState: function() {
     return {
-      status: -1
+      status: -1,
+      interviewer: null
     }
   },
+
+  componentDidMount: async function(){
+    if (this.props.id){
+      var resp = await store.viewInterviewer(this.props.id);
+      this.setState({interviewer: resp.entity});
+    }
+  },
+
+  _isNew: function(e){
+    return this.props.id ? false : true;
+  },
+
   _handleSubmit: async function(e){
     e.preventDefault();
-    var resp = await store.newInterviewer(
-      {'name':this.refs.name.value,
-       'email':this.refs.email.value});
+    var resp;
+    if(this._isNew()){
+      resp = await store.newInterviewer(this.refs.form.getFormData());
+    }
+    else{
+      resp = await store.updateInterviewer(this.refs.form.getFormData());
+    }
     this.setState({
       status: resp.status.code
     })
   },
 
   render: function(){
-    var message;
+    var message, interviewerForm;
     if (this.state.status===201){
       message = (
         <div data-alert className="alert-box status radius">
@@ -32,20 +51,22 @@ var InterviewerForm = React.createClass({
         </div>
       )
     }
+
+    if (this.state.interviewer){
+      interviewerForm = <InterviewerForm handleSubmit={this._handleSubmit} ref='form' data={this.state.interviewer}></InterviewerForm>
+    }
+    else{
+      interviewerForm =<div>Loading..</div>
+    }
     return (
       <div className='row'>
         <div className="small-11 small-centered large-6 large-centered columns">
-          <h2>Create New Interviewer</h2>
+          <h2>{this.props.title}</h2>
           {message}
-          <form onSubmit={this._handleSubmit} method="post">
-            <Field lname='Name' id='name' ref='name'></Field>
-            <Field lname='Email' id='email' ref='email'></Field>
-            <Field lname='Tel.' id='tel' ref='tel'></Field>
-            <input type='submit' id='submit' className="button" value="Create"/>
-          </form>
+          {interviewerForm}
         </div>
       </div>
     );
   }
 });
-module.exports = InterviewerForm;
+module.exports = Interviewer;
