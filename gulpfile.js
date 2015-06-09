@@ -1,20 +1,20 @@
-var gulp = require('gulp');
-var browserify = require('browserify');
-var babelify = require("babelify");
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var del = require('del');
-var connect = require('gulp-connect');
-var port = process.env.PORT || 8080;
-var reloadPort = process.env.RELOAD_PORT || 35729;
-var sass = require('gulp-sass')
-var paths = {
-  source: './src/app.jsx',
-  sass: ['scss/*.scss'],
-	javascripts: 'javascripts',
-  stylesheets: 'stylesheets',
-	tests: ['__tests__/**/*.jsx']
-};
+var gulp = require('gulp'),
+    browserify = require('browserify'),
+    babelify = require("babelify"),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer'),
+    del = require('del'),
+    connect = require('gulp-connect'),
+    port = process.env.PORT || 8080,
+    reloadPort = process.env.RELOAD_PORT || 35729,
+    sass = require('gulp-sass'),
+    paths = {
+      source: './src/app.jsx',
+      sass: ['scss/*.scss'],
+	    javascripts: 'javascripts',
+      stylesheets: 'stylesheets',
+	    tests: ['__tests__/**/*.jsx']
+    };
 
 gulp.task('clean', function () {
   del(['javascripts']);

@@ -22,4 +22,8 @@ store.deleteInterviewer = function(id){
   return client({method:'DELETE',path:'interviewer/'+id});
 };
 
+store.newInterview = function(entity) {
+  return client({method:'POST', path: 'interview', entity: entity});
+}
+
 module.exports = store;

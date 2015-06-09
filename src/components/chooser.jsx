@@ -11,9 +11,9 @@ let Chooser = React.createClass({
   _handleSelect: function(e) {
     let selected = this.state.selected
     this.setState({
-      selected: selected.concat({name:e.target.name, value:e.target.value})
+      selected: selected.concat({value:e.target.value.split(':')[0], email:e.target.value.split(':')[1]})
     },function() {
-      this.value = this.state.selected.map(s=>s.value);
+      this.value = this.state.selected.map(s=>s.email)
     })
   },
   _dataFetcher: function() {

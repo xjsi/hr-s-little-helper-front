@@ -26,5 +26,5 @@ var Interview = React.createClass({
       </Form>
     )
   },
-})
-  module.exports = Interview;
+});
+module.exports = Interview;
