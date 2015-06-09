@@ -12,7 +12,7 @@ var Interviewer = React.createClass({
   },
 
   componentDidMount: async function(){
-    if (this.props.id){
+    if (! this._isNew()){
       var resp = await store.viewInterviewer(this.props.id);
       this.setState({interviewer: resp.entity});
     }
@@ -52,7 +52,7 @@ var Interviewer = React.createClass({
       )
     }
 
-    if (this.state.interviewer){
+    if (this._isNew() || this.state.interviewer){
       interviewerForm = <InterviewerForm handleSubmit={this._handleSubmit} ref='form' data={this.state.interviewer}></InterviewerForm>
     }
     else{

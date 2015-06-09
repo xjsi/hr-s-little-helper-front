@@ -19,8 +19,8 @@ store.viewInterviewer = function(id){
 }
 
 
-store.deleteInterviewer = function(entity){
-  return client({method:'DELETE',path:'interviewer', entity: entity});
+store.deleteInterviewer = function(id){
+  return client({method:'DELETE',path:'interviewer/'+id});
 }
 
 module.exports = store;

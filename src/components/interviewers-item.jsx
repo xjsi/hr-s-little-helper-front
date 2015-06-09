@@ -9,7 +9,7 @@ var Interviewer = React.createClass({
 
   delInterviewer: async function(){
     if (confirm("do you want to delete")){
-      var resp = await store.deleteInterviewer({email: this.interviewer_key()});
+      var resp = await store.deleteInterviewer(this.interviewer_key());
       if (resp.entity == true){
         console.log('Delete Successfule');
       }
