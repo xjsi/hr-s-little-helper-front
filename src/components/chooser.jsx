@@ -2,9 +2,11 @@ let React = require('react'),
     Selector = require('./selector'),
     List = require('./list'),
     store = require('../store'),
-    m = require('mori');
+    m = require('mori'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 let Chooser = React.createClass({
+  mixins: [PureRenderMixin],
   getInitialState: function() {
     return {
       selected: m.set()
