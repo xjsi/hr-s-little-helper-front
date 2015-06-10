@@ -22,8 +22,8 @@ let Chooser = React.createClass({
                                  'key', data.key)
       )
     },function() {
-        this.value = m.intoArray(m.map(s=>s.key, this.state.selected))
-    })
+      this.value = m.intoArray(m.map(s=>m.get(s,'key'), this.state.selected))
+    });
   },
   _dataFetcher: function() {
     return store.allInterviewers();
