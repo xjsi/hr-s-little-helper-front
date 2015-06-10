@@ -1,5 +1,6 @@
 var React = require('react');
 var store = require('../store');
+var Help = require('../utils/help');
 
 var Interviewer = React.createClass({
 
@@ -17,7 +18,7 @@ var Interviewer = React.createClass({
     }
   },
   updateInterviewer: function(){
-    window.location = "http://"+window.location.host+'/#/interviewer/view/' + encodeURIComponent(this.interviewer_key());
+    window.location = Help.upDateLink() + this.interviewer_key();
   },
   render: function(){
   	return (

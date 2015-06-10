@@ -16,11 +16,10 @@ store.allInterviewers = function(){
 
 store.viewInterviewer = function(id){
   return client({method:'GET', path:'interviewer/'+id});
-}
-
+};
 
 store.deleteInterviewer = function(id){
   return client({method:'DELETE',path:'interviewer/'+id});
-}
+};
 
 module.exports = store;

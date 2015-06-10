@@ -1,6 +1,6 @@
 var Field = require('./field');
 var React = require('react');
-
+var Help = require('../utils/help');
 
 var InterviewerForm = React.createClass({
 
@@ -15,7 +15,7 @@ var InterviewerForm = React.createClass({
   },
 
   _viewAll: function(){
-    window.location = "http://"+window.location.host+'/#/interviewers';
+    window.location = Help.viewAllLink();
   },
 
   render: function(){
