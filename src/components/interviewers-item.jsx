@@ -1,6 +1,5 @@
 var React = require('react');
 var store = require('../store');
-var Help = require('../utils/help');
 
 var Interviewer = React.createClass({
 
@@ -17,15 +16,17 @@ var Interviewer = React.createClass({
       this.props.deleteCallback();
     }
   },
-  updateInterviewer: function(){
-    window.location = Help.upDateLink() + this.interviewer_key();
-  },
   render: function(){
   	return (
   	  <tr>
   	    <td>{this.props.interviewer.name}</td>
   	    <td>{this.props.interviewer.email}</td>
-  	    <td><button className="radius small" onClick={this.updateInterviewer}>Update</button> <button className="radius small" onClick={this.delInterviewer}>Delete</button></td>
+  	    <td>
+  	      <ul className="button-group even-2">
+  	      <li><a className="button radius small" href={`#/interviewer/${this.interviewer_key()}`}>Update</a></li>
+  	      <li><button className="radius small" onClick={this.delInterviewer}>Delete</button></li>
+  	      </ul>
+  	    </td>
   	  </tr>
   	  )
   }

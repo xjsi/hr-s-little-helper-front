@@ -14,7 +14,7 @@ var routes = {
         <Interviewer title='Create new interviewer'/>,
         appElement);
     },
-    '/view/:interviewID':function(interviewID){
+    '/:interviewID':function(interviewID){
           React.render(
             <Interviewer title='Update new interviewer' id={interviewID}/>,
             appElement);

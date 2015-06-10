@@ -1,6 +1,5 @@
 var Field = require('./field');
 var React = require('react');
-var Help = require('../utils/help');
 
 var InterviewerForm = React.createClass({
 
@@ -14,10 +13,6 @@ var InterviewerForm = React.createClass({
     return this.props.data ? this.props.data[name] : '';
   },
 
-  _viewAll: function(){
-    window.location = Help.viewAllLink();
-  },
-
   render: function(){
     return (
       <form onSubmit={this.props.handleSubmit} method="post">
@@ -26,7 +21,7 @@ var InterviewerForm = React.createClass({
         <Field lname='Tel.' id='tel' ref='tel' dValue=''></Field>
           <ul className="button-group even-2">
             <li><input type='submit' id='submit' className="button radius" value="Save"/></li>
-            <li><button id='viewAll' className="button radius" onClick={this._viewAll}>View All</button></li>
+            <li><a href="/#/interviewers" className="button radius">View All</a></li>
           </ul>
 
       </form>
