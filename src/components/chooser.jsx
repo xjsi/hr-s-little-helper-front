@@ -1,19 +1,26 @@
 let React = require('react'),
     Selector = require('./selector'),
     List = require('./list'),
-    store = require('../store');
+    store = require('../store'),
+    m = require('mori');
+
 let Chooser = React.createClass({
   getInitialState: function() {
     return {
-      selected: []
+      selected: m.set()
     }
   },
   _handleSelect: function(e) {
-    let selected = this.state.selected
+    let selected = this.state.selected;
+    let data = e.target.selectedOptions[0].dataset;
     this.setState({
-      selected: selected.concat({value:e.target.value.split(':')[0], email:e.target.value.split(':')[1]})
+      selected: m.conj(this.state.selected,
+                       m.hashMap('name', data.name,
+                                 'email', data.email,
+                                 'key', data.key)
+      )
     },function() {
-      this.value = this.state.selected.map(s=>s.email)
+        this.value = m.intoArray(m.map(s=>s.key, this.state.selected))
     })
   },
   _dataFetcher: function() {
