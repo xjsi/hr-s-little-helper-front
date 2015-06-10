@@ -1,6 +1,9 @@
 var React= require('react');
-var InterviewerForm = require('./components/interviewer');
+
 var Interview = require('./components/interview');
+var Interviewer = require('./components/interviewer');
+var InterviewersList = require('./components/interviewers')
+
 var {Router} = require('director');
 
 var appElement = document.getElementById('app');
@@ -8,8 +11,13 @@ var routes = {
   '/interviewer': {
     '/new': function(){
       React.render(
-        <InterviewerForm/>,
+        <Interviewer title='Create new interviewer'/>,
         appElement);
+    },
+    '/:interviewID':function(interviewID){
+          React.render(
+            <Interviewer title='Update new interviewer' id={interviewID}/>,
+            appElement);
     }
   },
   '/interview': {
@@ -17,7 +25,14 @@ var routes = {
       React.render(
         <Interview/>,
         appElement);
-    }
+    },
+
+  },
+
+  '/interviewers':function(){
+  	React.render(
+  		<InterviewersList/>,
+  		appElement);
   }
 };
 

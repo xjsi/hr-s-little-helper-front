@@ -6,3 +6,10 @@
 "foundation/components/labels",
 "foundation/components/inline-lists"
 ;
+
+@import "foundation/components/tables";
+@import "foundation/components/button-groups";
+
+.button-group {
+  padding-left: 0;
+}
