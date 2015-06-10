@@ -1,23 +1,32 @@
 let React = require('react'),
     Selector = require('./selector'),
     List = require('./list'),
-    store = require('../store');
+    store = require('../store'),
+    m = require('mori'),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+
 let Chooser = React.createClass({
+  mixins: [PureRenderMixin],
   getInitialState: function() {
     return {
-      selected: []
+      selected: m.set()
     }
   },
   _handleSelect: function(e) {
-    let selected = this.state.selected
+    let selected = this.state.selected;
+    let data = e.target.selectedOptions[0].dataset;
     this.setState({
-      selected: selected.concat({name:e.target.name, value:e.target.value})
+      selected: m.conj(this.state.selected,
+                       m.hashMap('name', data.name,
+                                 'email', data.email,
+                                 'key', data.key)
+      )
     },function() {
-      this.value = this.state.selected.map(s=>s.value);
-    })
+      this.value = m.intoArray(m.map(s=>m.get(s,'key'), this.state.selected))
+    });
   },
   _dataFetcher: function() {
-    return store.fetchInterviewers();
+    return store.allInterviewers();
   },
   render: function() {
     return (
