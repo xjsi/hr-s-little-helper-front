@@ -8,7 +8,7 @@ let Selector = React.createClass({
   componentDidMount: async function() {
     var data = await this.props.dataFetcher();
     this.setState({
-      options: data
+      options: data.entity
     })
   },
   render: function() {

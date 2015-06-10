@@ -24,7 +24,7 @@ let Chooser = React.createClass({
     })
   },
   _dataFetcher: function() {
-    return store.fetchInterviewers();
+    return store.allInterviewers();
   },
   render: function() {
     return (
