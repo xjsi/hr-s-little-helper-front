@@ -9,6 +9,8 @@ var InterviewersList = React.createClass({
 	 		<thead>
 			    <td width="200">Name</td>
 			    <td width="500">Email</td>
+			    <td width="500">Language</td>
+			    <td width="200">Experience</td>
 			    <td width="300">Opertions</td>
 		    </thead>
 	  	    <InterviewersListBody/>
