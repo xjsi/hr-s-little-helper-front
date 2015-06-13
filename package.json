@@ -24,6 +24,7 @@
     "babel-jest": "^5.2.0",
     "babel-runtime": "^5.4.7",
     "babelify": "^6.1.2",
+    "bower": "^1.4.1",
     "browserify": "^10.2.3",
     "del": "^1.2.0",
     "drakov": "^0.1.7",
