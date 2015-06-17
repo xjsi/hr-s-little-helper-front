@@ -14,6 +14,10 @@ store.allInterviewers = function(){
   return client({method:'GET', path: 'interviewers'});
 };
 
+store.interviews = function(){
+  return client({method:'GET', path: 'interviews'});
+};
+
 store.viewInterviewer = function(id){
   return client({method:'GET', path:'interviewer/'+id});
 };

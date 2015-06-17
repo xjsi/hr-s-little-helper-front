@@ -1,6 +1,7 @@
 var React = require('react');
 
 var Interview = require('./components/interview');
+var Interviews = require('./components/interviews');
 var Interviewer = require('./components/interviewer');
 var InterviewersList = require('./components/interviewers')
 var HRNavigation = require('./components/hr-navigation');
@@ -34,7 +35,12 @@ var routes = {
     },
 
   },
-
+  'interviews': function() {
+      React.render(
+        <Interviews title='Create new interviews'/>,
+        appElement);
+    },
+    
   '/interviewers':function(){
   	React.render(
   		<InterviewersList/>,
