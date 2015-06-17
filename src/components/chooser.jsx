@@ -13,17 +13,29 @@ let Chooser = React.createClass({
     }
   },
   _handleSelect: function(e) {
-    let selected = this.state.selected;
     let data = e.target.selectedOptions[0].dataset;
-    this.setState({
-      selected: m.conj(this.state.selected,
-                       m.hashMap('name', data.name,
-                                 'email', data.email,
-                                 'key', data.key)
-      )
-    },function() {
-      this.value = m.intoArray(m.map(s=>m.get(s,'key'), this.state.selected))
-    });
+    if (data.key) {
+      this.setState({
+        selected: m.conj(this.state.selected,
+                         m.hashMap('name', data.name,
+                                   'email', data.email,
+                                   'key', data.key)
+        )
+      },function() {
+        this.value = m.intoArray(m.map(s=>m.get(s,'key'), this.state.selected))
+      });
+    }
+  },
+  _handleDelete: function(e) {
+    let data = e.target.dataset;
+    if (data.key) {
+      this.setState({
+        selected: m.filter(interviewer=>m.get(interviewer, 'key')!=data.key, this.state.selected)
+      },function() {
+        this.value = m.intoArray(m.map(s=>m.get(s,'key'), this.state.selected))
+      });
+
+    }
   },
   _dataFetcher: function() {
     return store.allInterviewers();
@@ -31,8 +43,8 @@ let Chooser = React.createClass({
   render: function() {
     return (
       <div>
-        <List data={this.state.selected} name="Selected Interviewer" />
-        <Selector name="Interviewer" dataFetcher={this._dataFetcher} onChange={this._handleSelect}/>
+        <List data={this.state.selected} onDelete={this._handleDelete} name="Selected Interviewer" />
+        <Selector name="Interviewer" dataFetcher={this._dataFetcher} defaultText='--select interviewer--' onChange={this._handleSelect}/>
       </div>
     )
   }

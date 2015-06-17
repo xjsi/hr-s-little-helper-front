@@ -34,7 +34,7 @@ build/Release
 node_modules
 
 .tern-port
-stylesheets
+stylesheets/main.css
 # Created by https://www.gitignore.io
 
 ### Bower ###
