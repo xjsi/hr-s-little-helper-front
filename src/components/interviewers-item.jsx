@@ -21,6 +21,8 @@ var Interviewer = React.createClass({
   	  <tr>
   	    <td>{this.props.interviewer.name}</td>
   	    <td>{this.props.interviewer.email}</td>
+  	    <td>{this.props.interviewer.language}</td>
+  	    <td>{this.props.interviewer.experience}</td>
   	    <td>
   	      <ul className="button-group even-2">
   	      <li><a className="button radius small" href={`#/interviewer/${this.interviewer_key()}`}>Update</a></li>
