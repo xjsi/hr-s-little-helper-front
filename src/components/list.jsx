@@ -4,9 +4,10 @@ let List = React.createClass({
   render:function() {
     let items = m.map(d=>(
       <li>
-        <span className="label"
+        <span className="radius label icon-delete"
               data-email={m.get(d,'email')}
-              data-key={m.get(d,'key')}>
+              data-key={m.get(d,'key')}
+              onClick={this.props.onDelete}>
           {m.get(d,'name')}
         </span>
       </li>),
