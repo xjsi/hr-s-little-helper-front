@@ -8,8 +8,12 @@ let React = require('react'),
 let Chooser = React.createClass({
   mixins: [PureRenderMixin],
   getInitialState: function() {
+    var initdata = m.set();
+    if (this.props.dValue) {
+     initdata = m.into(m.set(), m.toClj(this.props.dValue))
+    }
     return {
-      selected: m.set()
+      selected: initdata
     }
   },
   _handleSelect: function(e) {

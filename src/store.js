@@ -35,7 +35,7 @@ store.newInterview = function(entity) {
 }
 
 store.editInterview = function(id, entity) {
-  return client({method:'POST', path: 'interview/'+id, entity: entity});
+  return client({method:'PUT', path: 'interview/'+id, entity: entity});
 }
 
 module.exports = store;

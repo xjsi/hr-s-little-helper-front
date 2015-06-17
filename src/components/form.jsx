@@ -8,7 +8,7 @@ var Form = React.createClass({
     }
   },
   _message: function() {
-    if (this.props.status===201){
+    if (this.props.status>=200 && this.props.status<300){
       return (
         <div data-alert className="alert-box status radius">
           {this.props.successMsg||'success'}
