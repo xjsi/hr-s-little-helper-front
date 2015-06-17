@@ -10,5 +10,5 @@ var client =
       .wrap(errorCode, { code: 500 })
       .wrap(pathPrefix, { prefix: api_remote })
 if(localStorage.access_token)
-  client = client.wrap(defaultRequest, { headers: { 'Authorization': 'token '+ localStorage.access_token } });
+  client = client.wrap(defaultRequest, { headers: { 'Authorization': 'Basic '+ localStorage.access_token } });
 module.exports = client;

@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+  <div class='row'>
+    <div class="small-8 small-centered large-5 large-centered columns">
+      <h1>please login first</h1>
+      <input id="username" type="text"/>
+      <input id="password" type="password"/>
+      <button id="signin" class="button expand">Signin</button>
+    </div>
+  </div>
+  <script>
+   document.getElementById('signin').addEventListener('click', function() {
+     localStorage.access_token=btoa(encodeURIComponent(document.getElementById('username').value)+':'+document.getElementById('password').value)  
+   })
+  </script>
+</body>
+</html>
