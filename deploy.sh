@@ -1,3 +1,4 @@
+#!/bin/bash set -x -e
 export NODE_ENV=production
 export HRLH_SERVICE='https://hrs-little-helper.herokuapp.com'
 ./node_modules/gulp/bin/gulp.js build sass
