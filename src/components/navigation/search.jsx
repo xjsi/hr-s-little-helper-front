@@ -1,14 +1,14 @@
-var React = require('react');
+var React = require('react')
 
 var Search = React.createClass({
+  _updateRoute: function(e) {
+      location.hash='/search/'+e.target.value
+  },
   render: function(){
     return (
       <div className="row collapse">
         <div className="large-8 small-9 columns">
-          <input type="text" placeholder="Interviewee Name"></input>
-        </div>
-        <div className="large-4 small-3 columns">
-          <a href="#/interviewers" className="alert button expand">Search</a>
+          <input type="search" placeholder="Interviewee Name" onChange={this._updateRoute}></input>
         </div>
       </div>
     );

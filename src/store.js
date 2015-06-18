@@ -4,8 +4,7 @@ var client = require('./client'),
 var store={};
 
 var authclient = function(opt) {
-  client(opt).then(function(resp) {
-    debugger
+  return client(opt).then(function(resp) {
     if(resp.status.code===401) location.href='/login/'
     return resp
   })
@@ -24,6 +23,10 @@ store.allInterviewers = function(){
 
 store.interviews = function(){
   return authclient({method:'GET', path: 'interviews'});
+};
+
+store.queryInterviews = function(keyword){
+  return authclient({method:'GET', path: 'interviews/query', params: {keyword:keyword}});
 };
 
 store.getInterview = function(id){

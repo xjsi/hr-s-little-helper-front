@@ -9,10 +9,24 @@ var Interviews = React.createClass({
   },
 
   componentDidMount: async function() {
-    var interviews = await store.interviews();
+    var interviews;
+    if(this.props.keyword){
+      interviews = await store.queryInterviews(this.props.keyword)
+    }else{
+      interviews = await store.interviews(); 
+    }
+    
     this.setState({
       interviews: interviews.entity
     })
+  },
+  componentWillUpdate: async function(nextpro, _) {
+    if(this.props.keyword!=nextpro.keyword){
+      var interviews = await store.queryInterviews(nextpro.keyword);
+      this.setState({
+        interviews: interviews.entity
+      })
+    }
   },
 	render: function(){
     let body = this.state.interviews.map(interview=>{
