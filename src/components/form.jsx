@@ -1,6 +1,6 @@
 var React = require('react');
 var store = require('../store');
-var Field = require('./Field');
+var Field = require('./field');
 var Form = React.createClass({
   getInitialState: function() {
     return {
