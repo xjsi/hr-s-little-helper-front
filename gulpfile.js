@@ -26,6 +26,7 @@ gulp.task('clean', function () {
 gulp.task('build', function() {
   var bundle =  browserify({
     entries: paths.source,
+    debug: process.env.NODE_ENV==='production'||true
     extensions: ['.jsx','.js']
   })
         .transform(babelify.configure({
