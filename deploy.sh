@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x -e
+export NODE_ENV=production
 ./node_modules/bower/bin/bower install
 ./node_modules/gulp/bin/gulp.js build sass
 echo 'hr.oyanglul.us' > CNAME
