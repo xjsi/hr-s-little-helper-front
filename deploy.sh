@@ -8,6 +8,7 @@ echo 'hr.oyanglul.us' > CNAME
 git checkout -b gh-pages
 git status
 git rm -r . --cache
+git rm .gitignore -f
 git add javascripts stylesheets index.html login CNAME
 git commit -m "publi:ship: $CIRCLE_BUILD_NUM"
 git push origin gh-pages -f
