@@ -14,27 +14,42 @@ var gulp = require('gulp'),
 	    javascripts: 'javascripts',
       stylesheets: 'stylesheets',
 	    tests: ['__tests__/**/*.jsx']
-    };
+    },
+    closureCompiler = require('gulp-closure-compiler'),
+    sourcemaps = require('gulp-sourcemaps'),
+    source = require('vinyl-source-stream');
 
 gulp.task('clean', function () {
   del(['javascripts']);
 });
 
 gulp.task('build', function() {
-  return  browserify({
+  var bundle =  browserify({
     entries: paths.source,
-    debug: true,
     extensions: ['.jsx','.js']
   })
-    .transform(babelify.configure({
+        .transform(babelify.configure({
 
-      optional: ["runtime","es7.asyncFunctions"]
-    }))
-    .transform(['envify'])
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest(paths.javascripts));
+          optional: ["runtime","es7.asyncFunctions"]
+        }))
+        .transform(['envify'])
+        .bundle()
+        .pipe(source('app.js'))
+        .pipe(buffer())
+        .pipe(gulp.dest(paths.javascripts));
+  if(process.env.NODE_ENV==='production'){
+    bundle
+      .pipe(closureCompiler({
+        compilerPath: 'bower_components/closure-compiler/lib/vendor/compiler.jar',
+        fileName: 'app.js',
+        compilerFlags: {
+          warning_level: 'QUIET',
+          create_source_map: './javascripts/app.js.map'
+        }
+      }))
+      .pipe(gulp.dest('./javascripts/'));
+  }
+  return bundle;
 });
 
 gulp.task('serve', ['build', 'sass'], function () {
