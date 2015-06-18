@@ -1,10 +1,11 @@
 var React = require('react');
 
 var Interview = require('./components/interview');
+var Interviews = require('./components/interviews');
 var Interviewer = require('./components/interviewer');
 var InterviewersList = require('./components/interviewers')
 var HRNavigation = require('./components/hr-navigation');
-
+var store = require('./store')
 var {Router} = require('director');
 
 var appElement = document.getElementById('app');
@@ -32,9 +33,22 @@ var routes = {
         <Interview/>,
         appElement);
     },
+    '/:id': async function(id) {
+      let interview = await store.getInterview(id);
+      let data = interview.entity
+      data.id=id
+      React.render(
+        <Interview data={data}/>,
+        appElement);
+    }
 
   },
-
+  'interviews': function() {
+      React.render(
+        <Interviews title='Create new interviews'/>,
+        appElement);
+    },
+    
   '/interviewers':function(){
   	React.render(
   		<InterviewersList/>,
