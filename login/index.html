@@ -15,7 +15,8 @@
   </div>
   <script>
    document.getElementById('signin').addEventListener('click', function() {
-     localStorage.access_token=btoa(encodeURIComponent(document.getElementById('username').value)+':'+document.getElementById('password').value)  
+     localStorage.access_token=btoa(encodeURIComponent(document.getElementById('username').value)+':'+document.getElementById('password').value);
+     location.href='/'
    })
   </script>
 </body>
